@@ -3,13 +3,13 @@ import Image from 'next/image';
 import { headers } from 'next/headers';
 
 export default async function PropertyDetails({ params, request }) {
-  const headerList = headers();
-  const pathname = headerList.get("x-current-path");
-  console.log(pathname,'new pathname ')
+    const headerList = headers();
+    const origin = headerList.get('x-origin'); //
+  console.log(origin,'new origin in component ')
 
 
   try {
-    const res = await fetch('http://localhost:3001/api/properties');
+    const res = await fetch(`${origin}/api/properties`);
     if (!res.ok) {
       throw new Error(`Failed to fetch properties: ${res.status} - ${res.statusText}`);
     }
